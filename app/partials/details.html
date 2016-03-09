@@ -1,3 +1,40 @@
-<div>
-	<h3>Enter Details for Meal:</h3>
+<!-- user inputs -->    
+<div class="col-md-6"  id="mealDetails">
+    <header class="mealHeader">
+        <h2>Meal Details</h2>
+    </header>
+    <form name="inputForm" ng-controller="mealController" ng-submit="submit()">
+        <div class="form-group">
+            <input class="form-input" id="meal_price" type="number" placeholder="Meal Price: $" name="meal_price" ng-model="input.meal_price" min="0" step=".01" required>
+        </div>
+        <div class="form-group">
+            <input class="form-input" id="tax_rate" type="number" placeholder="Tax Rate: %" name="tax_rate" ng-model="input.tax_rate" min="0" max="50" required>
+        </div>
+        <div class="form-group">
+            <input class="form-input" id="tip_percent" type="number" placeholder="Tip Percentage: %" name="tip_percent" ng-model="input.tip_percent" min="0" required>
+        </div>
+            <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submitButton">
+            <input class="btn btn-default btn-sm" id="clearButton" type="button" value="Clear" ng-click="cancel()">
+    </form>
+</div>
+<!-- customer totals -->
+<div class="col-md-6" id="totalCharges">
+    <header>
+        <h2 class="centered">Total Charges<br></h2>
+    </header>
+    <br>
+    <div class="customer-result" ng-controller="customerController">
+        <div class="form-group">
+            <span class="subtitle">Subtotal:</span>
+            <span class="result">{{customer.subtotal | number:2 | currency }}</span>
+        </div>
+        <div class="form-group">
+            <span class="subtitle">Tip:</span>
+            <span class="result">{{customer.tip | number:2 | currency}}</span>
+        </div>
+        <div class="form-group">
+            <span class="subtitle">Total:</span>
+            <span class="result">{{customer.total | number:2 | currency}}</span>
+        </div>
+    </div>
 </div>

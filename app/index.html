@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="waitstaffApp">
+
 <head>
 	<meta charset="UTF-8">
-	<title>Waitstaff Calculator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AngularJS Waitstaff Calculator</title>
+	<!-- stylesheets -->
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="css/styles.css" type="text/css">
 </head>
+
 <body>
-	
+	<div class="container">
+		<header class="main-header">
+			<h1 class="header">Waitstaff <img src="img/logo.png"> Calculator</h1>
+		</header>
+		<div class="nav" ng-controller="navigationController">	
+				<a href="#/">Home</a>
+				<a href="#/details">New Meal</a>
+				<a href="#/earnings">My Earnings</a>
+		</div>
+		<!-- individual route templates are loaded into element w/ ng-view attached to it -->
+		<div class="content" ng-view></div>
+	</div>
+	<!-- scripts -->
+	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-var app = angular.module('waitstaffApp', ['ngRoute']);
+var app = angular.module('waitStaffApp', ['ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider) {
 	//when 'home' clicked, use...
@@ -22,7 +22,7 @@ app.config(['$routeProvider', function($routeProvider) {
     });
 }]);
 
-app.service('sumOfMealsService', function(){
+/*app.service('sumOfMealsService', function(){
 	//keep meals in an array...
 	var mealsArray = [];
 
@@ -104,9 +104,9 @@ app.controller('earningsController', function(){
         avg_tip:0
     	}
     });
-});
+});*/
 
-app.controller('navigationController', function($scope, $location) {
+app.controller('navigationController', [ '$scope', function($scope, $location) {
   $scope.isActive = function(viewLocation) {
       return viewLocation === $location.path();
     };
@@ -119,4 +119,9 @@ app.controller('navigationController', function($scope, $location) {
         return 'inactive';
       }
     };
-});
+}]);
+
+
+
+
+

@@ -15,14 +15,20 @@
 		<header class="main-header">
 			<h1 class="header">Waitstaff <img src="img/logo.png"> Calculator</h1>
 		</header>
+		<hr>
 		<div class="nav" ng-controller="navigationController">	
 				<a href="#/">Home</a>
 				<a href="#/details">New Meal</a>
 				<a href="#/earnings">My Earnings</a>
 		</div>
+		<hr>
 		<!-- individual route templates are loaded into element w/ ng-view attached to it -->
 		<div class="content" ng-view></div>
+		<hr>
 	</div>
+	<footer class="footer">
+		Created by <a href="http://www.bpatrickcox.com">B. Patrick Cox, Jr.</a>
+	</footer>
 	<!-- scripts -->
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>

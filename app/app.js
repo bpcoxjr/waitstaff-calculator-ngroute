@@ -106,6 +106,7 @@ app.controller('earningsController', function(){
     });
 });*/
 
+//how user clicks on nav links are handled...
 app.controller('navigationController', [ '$scope', function($scope, $location) {
   $scope.isActive = function(viewLocation) {
       return viewLocation === $location.path();

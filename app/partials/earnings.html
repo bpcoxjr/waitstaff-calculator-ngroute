@@ -1,22 +1,23 @@
 <!-- all totals -->
-<!-- all totals -->
-<div class="col-md-6" id="earningsInfo">
-    <header>
-        <h2 class="centered">Total Earnings</h2>
-    </header>
-    <br>
-    <div class="waiter-result" ng-controller="earningsController">
-        <div class="form-group">
-            <span class="subtitle">Total Tips:</span>
-            <span class="result">{{earnings.tip_total | number:2 | currency}}</span>
-        </div>
-        <div class="form-group">
-            <span class="subtitle">Meal count:</span>
-            <span class="result">{{earnings.meal_count}}</span>
-        </div>
-        <div class="form-group">
-            <span class="subtitle">Average Tip per Meal:</span>
-            <span class="result">{{earnings.avg_tip | number:2 | currency}}</span>
+<div class="row">
+    <div class="col-md-12 earnings-info">
+        <header>
+            <h2 class="centered">Total Earnings</h2>
+        </header>
+        <br>
+        <div class="waiter-result" ng-controller="earningsController">
+            <div class="form-group">
+                <span class="subtitle">Total Tips:</span>
+                <span class="result">{{earnings.tip_total | number:2 | currency}}</span>
+            </div>
+            <div class="form-group">
+                <span class="subtitle">Meal count:</span>
+                <span class="result">{{earnings.meal_count}}</span>
+            </div>
+            <div class="form-group">
+                <span class="subtitle">Average Tip per Meal:</span>
+                <span class="result">{{earnings.avg_tip | number:2 | currency}}</span>
+            </div>
         </div>
     </div>
 </div>

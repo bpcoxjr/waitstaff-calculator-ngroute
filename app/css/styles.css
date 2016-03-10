@@ -80,6 +80,7 @@ input {
     font-size: 1.25em;
     font-weight: 200;
     padding-left: .5em;
+    background-color: #e1e8ed;
 }
 
 input:hover {

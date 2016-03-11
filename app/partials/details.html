@@ -4,7 +4,8 @@
         <header class="mealHeader">
             <h2>Meal Details</h2>
         </header>
-        <form name="inputForm" ng-controller="mealController" ng-submit="submit()">
+        <!-- behavior handled by mealController -->
+        <form name="inputForm" ng-controller="mealController" ng-submit="submit()"> 
             <div class="form-group">
                 <input class="form-input" id="meal_price" type="number" placeholder="Meal Price: $" name="meal_price" ng-model="input.meal_price" min="0" step=".01" required>
             </div>
@@ -14,8 +15,10 @@
             <div class="form-group">
                 <input class="form-input" id="tip_percent" type="number" placeholder="Tip Percentage: %" name="tip_percent" ng-model="input.tip_percent" min="0" required>
             </div>
+                <!-- submits form, which calls submit function -->
                 <input class="btn btn-primary btn-md" type="submit" value="Submit" id="submit-button">
-                <input class="btn btn-default btn-md" id="clear-button" type="button" value="Clear" ng-click="cancel()">
+                <!-- clearForm function called when clear button clicked -->
+                <input class="btn btn-default btn-md" id="clear-button" type="button" value="Clear" ng-click="clear()">
         </form>
     </div>
     <!-- customer totals -->
@@ -24,7 +27,8 @@
             <h2 class="centered">Total Charges<br></h2>
         </header>
         <br>
-        <div class="customer-result" ng-controller="customerController">
+        <!-- behavior handled by customerController -->
+        <div class="customer-result" ng-controller="mealController">
             <div class="form-group">
                 <span class="subtitle">Subtotal:</span>
                 <span class="result">{{customer.subtotal | number:2 | currency }}</span>

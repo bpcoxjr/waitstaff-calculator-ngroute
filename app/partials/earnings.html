@@ -5,6 +5,7 @@
             <h2 class="centered">Total Earnings</h2>
         </header>
         <br>
+        <!-- behavior controlled by earningsController -->
         <div class="waiter-result" ng-controller="earningsController">
             <div class="form-group">
                 <span class="subtitle">Total Tips:</span>
@@ -19,5 +20,6 @@
                 <span class="result">{{earnings.avg_tip | number:2 | currency}}</span>
             </div>
         </div>
+        <input class="btn btn-primary btn-md" id="reset-button" type="button" value="Reset" ng-click="resetEarnings()">
     </div>
 </div>

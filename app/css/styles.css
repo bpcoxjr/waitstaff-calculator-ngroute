@@ -131,8 +131,13 @@ h2 {
 }
 
 .waiter-result {
-    padding-bottom: 5em;
+    margin-bottom: 1em;
 }
+
+#reset-button {
+    margin-bottom: 5em;
+}
+
 
 .footer {
     height: 5em;

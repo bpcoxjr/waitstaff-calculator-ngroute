@@ -22,52 +22,53 @@ app.config(['$routeProvider', function($routeProvider) {
 }]);
 
 app.controller('mealController', function($scope, $rootScope){
-    //if submit button is clicked:
-    $scope.submit = function(){
-        $scope.submitted = true;
-        $rootScope.$broadcast("calculate", $scope.input); //let the customerController know what's been submitted
-        $scope.submitted = false;
-        clear();
-        console.log("submitted!");
-    }
-    //if clear button is clicked, call clear function
-    $scope.cancel = function(){
-        clear();
-        console.log("Clear!");
-    };
+  //if submit button is clicked:
+  $scope.submit = function(){
+      $scope.submitted = true;
+      $rootScope.$broadcast("calculate", $scope.input); //let the customerController know what's been submitted
+      $scope.submitted = false;
+      clear();
+      console.log("submitted!");
+  }
+  //if clear button is clicked, call clear function
+  $scope.cancel = function(){
+      clear();
+      console.log("Clear!");
+  };
 
-    function clear(){
-      $scope.input = {
-        meal_price: '',
-        tax_rate: '',
-        tip_percent: ''
-      }
-    };
+  function clear(){
+    $scope.input = {
+      meal_price: '',
+      tax_rate: '',
+      tip_percent: ''
+    }
+  };
 });
 
-/*app.controller('customerTotalsController', function($scope, $rootScope) {
-    //customer totals begin at zero
-    $scope.customer={
-        subtotal:0,
-        tip:0,
-        total:0
-    }
-    $scope.$on("calculate", function(event, data) {
-        resetCustomerTotals(); //clear previous customer total when new customer data submitted
-        $scope.customer.subtotal = data.meal_price + (data.meal_price * (data.tax_rate/100));
-        $scope.customer.tip = data.meal_price * (data.tip_percent)/100;
-        $scope.customer.total = $scope.customer.subtotal + $scope.customer.tip;
-        $rootScope.$broadcast("tip_result", $scope.customer); //let earningsController know customer results
-    });
+app.controller('customerTotalsController', function($scope, $rootScope) {
+  //customer totals begin at zero
+  $scope.customer={
+      subtotal:0,
+      tip:0,
+      total:0
+  }
+  $scope.$on("calculate", function(event, data) {
+      resetCustomerTotals(); //clear previous customer total when new customer data submitted
+      $scope.customer.subtotal = data.meal_price + (data.meal_price * (data.tax_rate/100));
+      $scope.customer.tip = data.meal_price * (data.tip_percent)/100;
+      $scope.customer.total = $scope.customer.subtotal + $scope.customer.tip;
+      $rootScope.$broadcast("tip_result", $scope.customer); //let earningsController know customer results
+  });
 
-    function resetCustomerTotals() {
-        $scope.customer= {
-            subtotal:0.00,
-            tip:0.00,
-            total:0.00
-        }
-    }
-});*/
+  function resetCustomerTotals() {
+      $scope.customer= {
+          subtotal:0.00,
+          tip:0.00,
+          total:0.00
+      }
+  }
+});
+
 
 app.controller('earningsController', function($scope, $rootScope){
 

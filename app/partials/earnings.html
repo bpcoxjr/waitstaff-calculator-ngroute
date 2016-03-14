@@ -12,7 +12,7 @@
                 <span class="result">{{earnings.tip_total | number:2 | currency}}</span>
             </div>
             <div class="form-group">
-                <span class="subtitle">Meal count:</span>
+                <span class="subtitle">Meal Count:</span>
                 <span class="result">{{earnings.meal_count}}</span>
             </div>
             <div class="form-group">
@@ -20,6 +20,6 @@
                 <span class="result">{{earnings.avg_tip | number:2 | currency}}</span>
             </div>
         </div>
-        <input class="btn btn-primary btn-md" id="reset-button" type="button" value="Reset" ng-click="resetEarnings()">
+        <div ng-controller="resetController"><input class="btn btn-primary btn-md" id="reset-button" type="button" value="Reset" ng-click="reset()"></div>
     </div>
 </div>

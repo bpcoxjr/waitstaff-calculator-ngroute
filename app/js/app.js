@@ -45,7 +45,7 @@ app.controller('mealController', function($scope, $rootScope){
     };
 });
 
-app.controller('customerTotalsController', function($scope ,$rootScope) {
+/*app.controller('customerTotalsController', function($scope, $rootScope) {
     //customer totals begin at zero
     $scope.customer={
         subtotal:0,
@@ -67,7 +67,7 @@ app.controller('customerTotalsController', function($scope ,$rootScope) {
             total:0.00
         }
     }
-});
+});*/
 
 app.controller('earningsController', function($scope, $rootScope){
 

@@ -5,7 +5,7 @@
             <h2>Meal Details</h2>
         </header>
         <!-- behavior handled by mealController -->
-        <form name="inputForm" ng-controller="mealController" ng-submit="submit()"> 
+        <form name="inputForm" ng-submit="submit()"> 
             <div class="form-group">
                 <input class="form-input" id="meal_price" type="number" placeholder="Meal Price: $" name="meal_price" ng-model="input.meal_price" min="0" step=".01" required>
             </div>
@@ -28,7 +28,7 @@
         </header>
         <br>
         <!-- behavior handled by customerTotalsController -->
-        <div class="customer-result" ng-controller="customerTotalsController">
+        <div class="customer-result">
             <div class="form-group">
                 <span class="subtitle">Subtotal:</span>
                 <span class="result">{{customer.subtotal | number:2 | currency }}</span>

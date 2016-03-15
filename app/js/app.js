@@ -1,5 +1,8 @@
 var app = angular.module('waitStaffApp', ['ngRoute']);
 
+//global variables
+app.value('earnings', [])//empty array to store earnings values in
+
 app.config(['$routeProvider', function($routeProvider) {
   //when 'home' nav clicked, use...
   $routeProvider.when('/', {
@@ -8,7 +11,7 @@ app.config(['$routeProvider', function($routeProvider) {
     //when 'new meal' nav clicked, use...
     .when('/details', {
       templateUrl : 'partials/details.html',
-      controller :'mealController'
+      controller :'inputController'
     })
     //when 'my earnings' nav clicked, use...
     .when('/earnings', {
@@ -21,11 +24,23 @@ app.config(['$routeProvider', function($routeProvider) {
     });
 }]);
 
-app.controller('mealController', function($scope, $rootScope){
-  //if submit button is clicked:
+app.controller('inputController', function($scope, earnings){
+  //everything clear to begin with
+  $scope.input = {
+    meal_price: null,
+    tax_rate: null,
+    tip_percent: null
+  };
+  $scope.customer = {
+    subtotal: 0,
+    tip: 0,
+    total: 0
+  }
+  //if submit button is clicked
   $scope.submit = function(){
       $scope.submitted = true;
-      $rootScope.$broadcast("calculate", $scope.input); //let the customerController know what's been submitted
+      calculateMeal($scope.input);
+      calculateEarnings($scope.input);
       $scope.submitted = false;
       clear();
       console.log("submitted!");
@@ -35,31 +50,22 @@ app.controller('mealController', function($scope, $rootScope){
       clear();
       console.log("Clear!");
   };
-
+  //zero out values when user clicks 'clear' button
   function clear(){
     $scope.input = {
-      meal_price: '',
-      tax_rate: '',
-      tip_percent: ''
+      meal_price: null,
+      tax_rate: null,
+      tip_percent: null
     }
-  };
-});
-
-app.controller('customerTotalsController', function($scope, $rootScope) {
-  //customer totals begin at zero
-  $scope.customer={
-      subtotal:0,
-      tip:0,
-      total:0
   }
-  $scope.$on("calculate", function(event, data) {
+  //do the math on subtotal, tip, and total
+  function calculateMeal(input) {
       resetCustomerTotals(); //clear previous customer total when new customer data submitted
-      $scope.customer.subtotal = data.meal_price + (data.meal_price * (data.tax_rate/100));
-      $scope.customer.tip = data.meal_price * (data.tip_percent)/100;
+      $scope.customer.subtotal = input.meal_price + (input.meal_price * (input.tax_rate/100));
+      $scope.customer.tip = input.meal_price * (input.tip_percent)/100;
       $scope.customer.total = $scope.customer.subtotal + $scope.customer.tip;
-      $rootScope.$broadcast("tip_result", $scope.customer); //let earningsController know customer results
-  });
-
+      //$rootScope.$broadcast("tip_result", $scope.customer); //let earningsController know customer results
+  };
   function resetCustomerTotals() {
       $scope.customer= {
           subtotal:0.00,
@@ -67,58 +73,31 @@ app.controller('customerTotalsController', function($scope, $rootScope) {
           total:0.00
       }
   }
+  //push customer submitted data into array that can be accessed by 'earningsController'
+  function calculateEarnings(input){
+    earnings.push({'meal_price':input.meal_price, 'tax_rate':input.tax_rate, 'tip_percent': input.tip_percent});
+  } 
 });
 
-
-app.controller('earningsController', function($scope, $rootScope){
-
+app.controller('earningsController', function($scope, earnings){
   $scope.earnings= { //everything at zero to begin with
         tip_total: 0.00,
         meal_count: 0,
         avg_tip: 0.00
   }
-  //when 'tip_result' broadcast received, add to totals
-  $scope.$on("tip_result", function(event, data) {
-      console.log("Tip results received!");
-      $scope.earnings.tip_total += data.tip;
-      $scope.earnings.meal_count += 1;
-      $scope.earnings.avg_tip += $scope.earnings.tip_total / $scope.earnings.meal_count;
-  });
-
-  $scope.$on("reset", function() { //clear everything out when reset button clicked
-      $scope.earnings = {
+  //loop through each meal in the global earnings array to calculate earnings
+  for(var meal in earnings){ 
+    $scope.earnings.tip_total += earnings[meal].meal_price * (earnings[meal].tip_percent/100);
+    $scope.earnings.meal_count += 1;
+    $scope.earnings.avg_tip = $scope.earnings.tip_total / $scope.earnings.meal_count;
+    console.log(earnings.tip_total);
+  } 
+  $scope.reset = function(){
+    $scope.earnings = {
         tip_total: 0,
         meal_count: 0,
         avg_tip: 0
-      }
-      console.log("Earnings reset!");
-  });
-});
-
-app.controller('resetController', function($scope, $rootScope){
-  $scope.reset = function(){
-    $rootScope.$broadcast("reset");
-    console.log("Reset clicked!");
+    }
+    console.log("Reset clicked, earnings reset!");
   };
 });
-
-//how user clicks on nav links are handled...
-app.controller('navigationController', [ '$scope', function($scope, $location) {
-  $scope.isActive = function(viewLocation) {
-      return viewLocation === $location.path();
-    };
-
-    $scope.classActive = function(viewLocation) {
-      if($scope.isActive(viewLocation)) {
-        return 'active';
-      }
-      else {
-        return 'inactive';
-      }
-    };
-}]);
-
-
-
-
-

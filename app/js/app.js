@@ -1,3 +1,4 @@
+//declare 'waitStaffApp' as an Angular module relying on ngRoute, store in 'app' variable
 var app = angular.module('waitStaffApp', ['ngRoute']);
 
 //global variables
@@ -24,6 +25,7 @@ app.config(['$routeProvider', function($routeProvider) {
     });
 }]);
 
+//controller that takes meal price, tax rate, and tip % as input and calculates customer totals
 app.controller('inputController', function($scope, earnings){
   //everything clear to begin with
   $scope.input = {
@@ -79,6 +81,7 @@ app.controller('inputController', function($scope, earnings){
   } 
 });
 
+//controller that calculates total tips, total meal count, and average tip per meal
 app.controller('earningsController', function($scope, earnings){
   $scope.earnings= { //everything at zero to begin with
         tip_total: 0.00,

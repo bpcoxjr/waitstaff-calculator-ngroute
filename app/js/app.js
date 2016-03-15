@@ -49,7 +49,10 @@ app.controller('inputController', function($scope, earnings){
       console.log("submitted!");
   }
   //if clear button is clicked, call clear function
-  $scope.clear = function(){
+  $scope.cancel = function(){
+    clear();
+  }
+  function clear(){
       $scope.input = {
       meal_price: null,
       tax_rate: null,

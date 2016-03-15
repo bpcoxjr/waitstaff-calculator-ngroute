@@ -4,6 +4,7 @@ var app = angular.module('waitStaffApp', ['ngRoute']);
 //global variables
 app.value('earnings', [])//empty array to store earnings values in
 
+//
 app.config(['$routeProvider', function($routeProvider) {
   //when 'home' nav clicked, use...
   $routeProvider.when('/', {
@@ -48,18 +49,14 @@ app.controller('inputController', function($scope, earnings){
       console.log("submitted!");
   }
   //if clear button is clicked, call clear function
-  $scope.cancel = function(){
-      clear();
-      console.log("Clear!");
-  };
-  //zero out values when user clicks 'clear' button
-  function clear(){
-    $scope.input = {
+  $scope.clear = function(){
+      $scope.input = {
       meal_price: null,
       tax_rate: null,
       tip_percent: null
     }
-  }
+      console.log("Clear!");
+  };
   //do the math on subtotal, tip, and total
   function calculateMeal(input) {
       resetCustomerTotals(); //clear previous customer total when new customer data submitted

@@ -6,20 +6,20 @@ html {
 }
 
 .container {
-	max-width: 1000px;
+    max-width: 1000px;
 }
 
 .main-header {
-	width: 100%;
-	text-align: center;
+    width: 100%;
+    text-align: center;
 }
 
 .header {
-	font-weight: 200;
+    font-weight: 200;
 }
 
 .nav {
-	text-align: center;
+    text-align: center;
     width: 100%;
     padding-top: .5em;
     padding-bottom: .5em;
@@ -29,7 +29,7 @@ html {
 }
 
 .nav a {
-	width: 100%;
+    width: 100%;
     padding-right: 1em;
     font-size: 1.5em;
     color: #000;
